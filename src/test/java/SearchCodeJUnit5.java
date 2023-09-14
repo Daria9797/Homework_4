@@ -1,0 +1,2 @@
+public class SearchCodeJUnit5 {
+}
