@@ -16,7 +16,6 @@ public class SearchCodeJUnit5 {
         $("[data-testid=results-list] h3 a").shouldHave(text("selenide/selenide")).click();
 
         // Перейдите в раздел Wiki проекта
-        //$$("ul.UnderlineNav-body.list-style-none li").get(5).$("a").click();
         $$("ul.UnderlineNav-body.list-style-none li").get(5).$("a").click();
         // Убедитесь, что в списке страниц (Pages) есть страница SoftAssertions
         $$(".markdown-body ul li a").shouldHave(itemWithText("Soft assertions"));
