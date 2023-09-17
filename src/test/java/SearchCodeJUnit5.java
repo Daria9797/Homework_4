@@ -10,11 +10,14 @@ public class SearchCodeJUnit5 {
     void searchCodeJUnit5(){
 
         //Откройте страницу Selenide в Github
-        open("https://github.com/selenide/selenide");
+        open("https://github.com");
+        $(".search-input").click();
+        $("#query-builder-test").setValue("selenide").pressEnter();
+        $("[data-testid=results-list] h3 a").shouldHave(text("selenide/selenide")).click();
 
         // Перейдите в раздел Wiki проекта
+        //$$("ul.UnderlineNav-body.list-style-none li").get(5).$("a").click();
         $$("ul.UnderlineNav-body.list-style-none li").get(5).$("a").click();
-
         // Убедитесь, что в списке страниц (Pages) есть страница SoftAssertions
         $$(".markdown-body ul li a").shouldHave(itemWithText("Soft assertions"));
 
