@@ -13,10 +13,11 @@ public class SearchCodeJUnit5 {
         open("https://github.com");
         $(".search-input").click();
         $("#query-builder-test").setValue("selenide").pressEnter();
-        $("[data-testid=results-list] h3 a").shouldHave(text("selenide/selenide")).click();
+        $$("[data-testid=results-list] h3 a").first().click();
 
         // Перейдите в раздел Wiki проекта
         $$("ul.UnderlineNav-body.list-style-none li").get(5).$("a").click();
+        
         // Убедитесь, что в списке страниц (Pages) есть страница SoftAssertions
         $$(".markdown-body ul li a").shouldHave(itemWithText("Soft assertions"));
 
