@@ -13,18 +13,19 @@ public class SearchCodeJUnit5 {
         open("https://github.com");
         $(".search-input").click();
         $("#query-builder-test").setValue("selenide").pressEnter();
-        $$("[data-testid=results-list] h3 a").first().click();
+        $$("[data-testid=results-list] h3 a").first().click(); 
 
         // Перейдите в раздел Wiki проекта
-        $$("ul.UnderlineNav-body.list-style-none li").get(5).$("a").click();
-        
+        $("#wiki-tab").click();
+
         // Убедитесь, что в списке страниц (Pages) есть страница SoftAssertions
-        $$(".markdown-body ul li a").shouldHave(itemWithText("Soft assertions"));
+        $("#wiki-pages-filter").setValue("Soft");
+        $("[data-filterable-for=wiki-pages-filter]").shouldHave(text("SoftAssertions")).shouldBe(visible);
 
         //Откройте страницу SoftAssertions, проверьте что внутри есть пример кода для JUnit5
-        $$(".markdown-body ul li").get(7).$("a").click();
-        $$(".markdown-body h4").findBy(text("3. Using JUnit5 extend test class:")).shouldBe(visible);
-        $$("pre").findBy(text("@ExtendWith({SoftAssertsExtension.class})\n" +
+        $("#wiki-pages-box").$(byText("SoftAssertions")).click();
+        $("#wiki-body").shouldHave(visible,text("3. Using JUnit5 extend test class:"));
+        $("#wiki-body").shouldHave(visible,text("@ExtendWith({SoftAssertsExtension.class})\n" +
                 "class Tests {\n" +
                 "  @Test\n" +
                 "  void test() {\n" +
@@ -34,7 +35,7 @@ public class SearchCodeJUnit5 {
                 "    $(\"#first\").should(visible).click();\n" +
                 "    $(\"#second\").should(visible).click();\n" +
                 "  }\n" +
-                "}")).shouldBe(visible);
+                "}"));
     }
 
 }
