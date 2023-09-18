@@ -1,8 +1,8 @@
-
-
 import org.junit.jupiter.api.Test;
-import static com.codeborne.selenide.CollectionCondition.itemWithText;
-import static com.codeborne.selenide.Condition.*;
+
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class SearchCodeJUnit5 {
@@ -13,7 +13,7 @@ public class SearchCodeJUnit5 {
         open("https://github.com");
         $(".search-input").click();
         $("#query-builder-test").setValue("selenide").pressEnter();
-        $$("[data-testid=results-list] h3 a").first().click(); 
+        $("div.search-title a").click();
 
         // Перейдите в раздел Wiki проекта
         $("#wiki-tab").click();
@@ -39,3 +39,4 @@ public class SearchCodeJUnit5 {
     }
 
 }
+
